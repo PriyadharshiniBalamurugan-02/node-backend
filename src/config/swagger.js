@@ -1,12 +1,13 @@
-
 const swaggerJsdoc = require("swagger-jsdoc");
+const path = require("path");   // ✅ REQUIRED
 
-module.exports = swaggerJsdoc({
+const options = {
   definition: {
     openapi: "3.0.0",
     info: {
       title: "Product API",
-      version: "1.0.0"
+      version: "1.0.0",
+      description: "Auth + Product CRUD APIs"
     },
     components: {
       securitySchemes: {
@@ -17,7 +18,15 @@ module.exports = swaggerJsdoc({
         }
       }
     },
-    security: [{ bearerAuth: [] }]
+    security: [
+      {
+        bearerAuth: []
+      }
+    ]
   },
-   apis: [path.join(process.cwd(), "src/routes/*.js")]
-});
+
+  // ✅ ABSOLUTE PATH – WORKS IN VERCEL
+  apis: [path.join(process.cwd(), "src/routes/*.js")]
+};
+
+module.exports = swaggerJsdoc(options);
