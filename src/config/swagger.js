@@ -19,5 +19,5 @@ module.exports = swaggerJsdoc({
     },
     security: [{ bearerAuth: [] }]
   },
-  apis: ["./src/routes/*.js"]
+   apis: [path.join(process.cwd(), "src/routes/*.js")]
 });
